@@ -1,0 +1,36 @@
+-- Pet Simulator 99 Egg Opening, Auto Farming, and Auto Reward Collection Script
+-- This script allows you to open eggs anywhere, auto farm, and automatically collect all rewards
+
+-- Find the Egg opening function, Farming function, and Reward collection function in the game code
+local eggOpeningFunction = game:GetService("ReplicatedStorage").EggOpeningFunction
+local farmingFunction = game:GetService("ReplicatedStorage").FarmingFunction
+local rewardCollectionFunction = game:GetService("ReplicatedStorage").RewardCollectionFunction
+
+-- Function to open eggs anywhere
+local function openEggAnywhere()
+    while true do
+        eggOpeningFunction:InvokeServer() -- Invoke the egg opening function
+        wait(1) -- Wait for 1 second before opening the next egg
+    end
+end
+
+-- Function for auto farming
+local function autoFarm()
+    while true do
+        farmingFunction:InvokeServer() -- Invoke the farming function
+        wait(5) -- Wait for 5 seconds before farming again
+    end
+end
+
+-- Function to automatically collect rewards
+local function autoCollectRewards()
+    while true do
+        rewardCollectionFunction:InvokeServer() -- Invoke the reward collection function
+        wait(2) -- Wait for 2 seconds before collecting rewards again
+    end
+end
+
+-- Call the functions to open eggs anywhere, auto farm, and auto collect rewards
+spawn(openEggAnywhere) -- Start opening eggs anywhere in a separate thread
+spawn(autoFarm) -- Start auto farming in a separate thread
+spawn(autoCollectRewards) -- Start auto collecting rewards in a separate thread
